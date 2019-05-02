@@ -20,6 +20,7 @@ services:
     environment:
       - GIT_REPO_URL=https://myuser:mypass@github.com/flaviostutz/gittagger-test.git
       - GIT_USERNAME=myuser
+      - GIT_EMAIL=myuser@mail.com
 ```
 * Run 'docker-compose up'
 
