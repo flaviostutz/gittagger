@@ -7,6 +7,7 @@ An example usage is when you want to use CI for triggering a container run that 
 
 ## Example
 
+* Create file 'docker-compose.yml'
 ```yml
 version: '3.7'
 
@@ -20,6 +21,7 @@ services:
       - GIT_REPO_URL=https://myuser:mypass@github.com/flaviostutz/gittagger-test.git
       - GIT_USERNAME=myuser
 ```
+* Run 'docker-compose up'
 
 * Push a new tag to repository
 ```shell
