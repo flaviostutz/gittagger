@@ -31,9 +31,9 @@ curl -X POST http://localhost:50000/tag/1.0.2
 
 * Push new file contents to repository
 ```shell
-curl -X POST http://localhost:50000/tag/1.0.2
+curl -X POST http://localhost:50000/files/test2 -d test2
 ```
 ```json
-{"message":"Tag 1.0.3 pushed successfully to git repository"}
+{"message":"File 'test2' updated and pushed to git repo successfully"}
 ```
 
