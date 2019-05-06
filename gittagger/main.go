@@ -76,8 +76,21 @@ func handlerTag(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	tagname := vars["name"]
 
+	logrus.Debugf("Checking existing tag %s", tagname)
+	out, err := ExecShellf("cd /opt/repo && git tag -d %s", tagname)
+	if err != nil {
+		logrus.Debugf("Tag %s not found. err=%s", tagname, err)
+	} else {
+		logrus.Debugf("Deleting tag %s remotely", tagname)
+		out, err = ExecShellf("cd /opt/repo && git push --delete origin %s", tagname)
+		if err != nil {
+			writeResponse(w, http.StatusInternalServerError, out)
+			return
+		}
+	}
+
 	logrus.Debugf("Adding tag %s", tagname)
-	out, err := ExecShellf("cd /opt/repo && git tag %s", tagname)
+	out, err = ExecShellf("cd /opt/repo && git tag %s", tagname)
 	if err != nil {
 		writeResponse(w, http.StatusInternalServerError, out)
 		return
